@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>林雨晴の个人主页</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/69746529a8.js" crossorigin="anonymous"></script>
+    <script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
+</head>
+<body>
+    <div class="glass-container">
+        <!-- 左上方标题部分 -->
+        <div class="header">
+            <h1>林雨晴の个人主页</h1>
+            <p class="subtitle">一个高中生捏，网络、安全、编程爱好者喵~</p>
+            <p id="hitokoto" class="subtitle">
+                <a href="#" id="hitokoto_text">:D 一言获取中...</a>
+            </p>
+        </div>
+
+        <!-- 时钟 -->
+        <div class="clock-section">
+            <div class="clock-time">
+                <span id="clockHour">00</span>:<span id="clockMin">00</span>:<span id="clockSec" class="clock-seconds">00</span>
+            </div>
+            <div class="clock-date" id="clockDate">----年--月--日 星期-</div>
+        </div>
+
+        <!-- 社交按钮 -->
+        <div class="button-group">
+            <button class="glass-btn" onclick="showContact('github')">
+                <i class="fa-brands fa-github"></i>
+                <span>GitHub</span>
+            </button>
+            <button class="glass-btn" onclick="showContact('email')">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Email</span>
+            </button>
+            <button class="glass-btn" onclick="showContact('twitter')">
+                <i class="fa-brands fa-x-twitter"></i>
+                <span>Twitter</span>
+            </button>
+            <button class="glass-btn" onclick="showContact('bilibili')">
+                <i class="fa-brands fa-bilibili"></i>
+                <span>BiliBili</span>
+            </button>
+        </div>
+
+        <!-- 网址导航 -->
+        <div class="info-section">
+            <div class="section-label">我的网站</div>
+            <a class="info-item" href="https://blog.lin-neko.top" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-rss"></i>
+                <span><strong>博客</strong></span>
+            </a>
+            <a class="info-item" href="https://moon.lin-neko.top" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-clapperboard"></i>
+                <span><strong>看片网站</strong> · Pass: Konata0528</span>
+            </a>
+            <a class="info-item" href="https://zhihu.com" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-openai"></i>
+                <span><strong>在线AI工具</strong></span>
+            </a>
+        </div>
+
+        <div class="footer">By Lin_neko · 2026</div>
+    </div>
+
+    <!-- 弹窗遮罩 -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div class="modal-icon" id="modalIcon"></div>
+            <div class="modal-title" id="modalTitle"></div>
+            <div class="modal-label" id="modalLabel"></div>
+            <div class="modal-value" id="modalValue"></div>
+            <a class="modal-action" id="modalAction" href="#" target="_blank"></a>
+        </div>
+    </div>
+
+    <!-- JS（顺序：数据 → 功能模块） -->
+    <script src="js/contacts.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/modal.js"></script>
+</body>
+</html>

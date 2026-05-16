@@ -1,0 +1,479 @@
+/* ═══════════════════════════════════════════
+   GlassStyleHomepage — 全局样式
+   维护指引：
+   - 修改 :root 中的变量即可全局调色
+   - 需新增组件时，在下方对应的分区追加
+   ═══════════════════════════════════════════ */
+
+/* ── Design Tokens ── */
+:root {
+    /* 文本透明度层级 */
+    --text-primary:   rgba(255, 255, 255, 0.92);
+    --text-secondary: rgba(255, 255, 255, 0.70);
+    --text-tertiary:  rgba(255, 255, 255, 0.50);
+    --text-muted:     rgba(255, 255, 255, 0.30);
+    --text-faint:     rgba(255, 255, 255, 0.15);
+
+    /* 玻璃面板背景 */
+    --glass-bg:       rgba(255, 255, 255, 0.03);
+    --glass-bg-item:  rgba(255, 255, 255, 0.04);
+    --glass-bg-btn:   rgba(255, 255, 255, 0.06);
+    --glass-bg-hover: rgba(255, 255, 255, 0.08);
+    --glass-bg-active:rgba(255, 255, 255, 0.12);
+
+    /* 边框 */
+    --border-default: rgba(255, 255, 255, 0.12);
+    --border-subtle:  rgba(255, 255, 255, 0.06);
+    --border-hover:   rgba(255, 255, 255, 0.25);
+    --border-light:   rgba(255, 255, 255, 0.10);
+
+    /* 阴影 */
+    --shadow-card:  0 20px 60px rgba(0, 0, 0, 0.35);
+    --shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.30);
+
+    /* 圆角 */
+    --radius-container: 28px;
+    --radius-btn:       18px;
+    --radius-item:      14px;
+    --radius-modal:     24px;
+
+    /* 过渡 */
+    --transition-fast: 0.3s ease;
+}
+
+/* ── Reset ── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ── Body ── */
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: #0f0f1a url("../img/bg.png") center / cover no-repeat fixed;
+    padding: 20px;
+}
+
+/* 半透明遮罩 */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.30);
+    z-index: 0;
+}
+
+/* ── 主容器：玻璃板 ── */
+.glass-container {
+    position: relative;
+    z-index: 1;
+    max-width: 740px;
+    width: 100%;
+    padding: 44px 40px 36px;
+    border-radius: var(--radius-container);
+    background: var(--glass-bg);
+    backdrop-filter: blur(5px) saturate(1.0);
+    -webkit-backdrop-filter: blur(5px) saturate(1.0);
+    border: 1px solid var(--border-default);
+    box-shadow:
+        var(--shadow-card),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: box-shadow 0.4s ease;
+}
+
+/* ── 标题区 ── */
+.header {
+    text-align: left;
+    margin-bottom: 32px;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 2px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+    text-align: left;
+    margin-top: 8px;
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+#hitokoto {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--text-tertiary);
+    border-left: 2px solid var(--border-light);
+    padding-left: 14px;
+}
+
+#hitokoto a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ── 时钟 ── */
+.clock-section {
+    padding: 18px 0;
+    margin-bottom: 24px;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    text-align: left;
+}
+
+.clock-time {
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 3px;
+    font-family: "Cascadia Code", "JetBrains Mono", "Fira Code", Consolas, monospace;
+}
+
+.clock-seconds {
+    font-size: 22px;
+    color: var(--text-tertiary);
+}
+
+.clock-date {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    margin-top: 6px;
+    letter-spacing: 1px;
+}
+
+/* ── 社交按钮 ── */
+.button-group {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.glass-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 22px 16px;
+    border-radius: var(--radius-btn);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--text-primary);
+    background: var(--glass-bg-btn);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--border-light);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 玻璃边缘发光（光穿透玻璃效果） */
+.glass-btn::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: calc(var(--radius-btn) + 1px);
+    padding: 2px;
+    background: conic-gradient(
+        transparent 0deg,
+        transparent 160deg,
+        rgba(255, 255, 255, 0.7) 180deg,
+        transparent 200deg,
+        transparent 360deg
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.6s ease;
+    transform: rotate(0deg);
+    pointer-events: none;
+}
+
+.glass-btn:hover::after {
+    opacity: 1;
+    transform: rotate(180deg);
+}
+
+.glass-btn:hover {
+    background: var(--glass-bg-active);
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+    box-shadow:
+        var(--shadow-hover),
+        0 0 30px rgba(255, 255, 255, 0.06);
+}
+
+.glass-btn:active {
+    transform: translateY(-1px);
+}
+
+/* FontAwesome 图标在按钮中的尺寸 */
+.glass-btn i {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+/* ── 信息卡片 ── */
+.info-section {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    background: var(--glass-bg-item);
+    backdrop-filter: blur(4px);
+    border-radius: var(--radius-item);
+    border: 1px solid var(--border-subtle);
+    line-height: 1.7;
+    font-size: 14px;
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.info-item:hover {
+    background: var(--glass-bg-hover);
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+.info-item strong {
+    color: var(--text-primary);
+}
+
+/* ── 导航链接样式 ── */
+a.info-item {
+    text-decoration: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+/* 右侧小箭头提示可点击 */
+a.info-item::after {
+    content: '→';
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+    font-size: 16px;
+    color: var(--text-muted);
+}
+
+a.info-item:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(4px);
+}
+
+/* ── 分区标签 ── */
+.section-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    padding: 0 4px 4px;
+}
+
+/* ── 底部 ── */
+.footer {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 13px;
+    color: var(--text-faint);
+    padding-top: 18px;
+    border-top: 1px solid var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════
+   卡片弹窗 (Modal)
+   ═══════════════════════════════════════════ */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px) saturate(1.5);
+    -webkit-backdrop-filter: blur(24px) saturate(1.5);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-modal);
+    padding: 36px 32px 28px;
+    max-width: 360px;
+    width: 100%;
+    box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    transform: scale(0.92) translateY(16px);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    text-align: center;
+}
+
+.modal-overlay.active .modal-card {
+    transform: scale(1) translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 4px;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: var(--text-primary);
+}
+
+.modal-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 56px;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.modal-label {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    margin-bottom: 10px;
+}
+
+.modal-value {
+    font-size: 15px;
+    color: var(--text-primary);
+    background: var(--glass-bg-btn);
+    padding: 10px 18px;
+    border-radius: 10px;
+    word-break: break-all;
+    border: 1px solid var(--border-subtle);
+}
+
+.modal-action {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 10px 28px;
+    border-radius: 10px;
+    background: var(--glass-bg-hover);
+    border: 1px solid var(--border-default);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+}
+
+.modal-action:hover {
+    background: var(--glass-bg-active);
+    border-color: var(--border-hover);
+}
+
+/* ═══════════════════════════════════════════
+   响应式
+   ═══════════════════════════════════════════ */
+@media (max-width: 600px) {
+    .glass-container {
+        padding: 28px 18px 24px;
+        border-radius: 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .glass-btn {
+        flex-direction: row;
+        gap: 14px;
+        padding: 16px 20px;
+    }
+
+    .glass-btn i {
+        margin-bottom: 0;
+    }
+
+    .info-item {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+
+    .clock-time {
+        font-size: 34px;
+        letter-spacing: 2px;
+    }
+
+    .modal-card {
+        padding: 28px 20px 24px;
+    }
+}
+
+@media (max-width: 400px) {
+    .glass-container {
+        padding: 20px 12px 18px;
+    }
+
+    h1 {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .clock-time {
+        font-size: 28px;
+    }
+}
