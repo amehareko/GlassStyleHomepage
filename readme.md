@@ -49,9 +49,10 @@ github: {
 }
 ```
 
-### 3. 背景图片 — `img/bg.png`
+### 3. 一些图片 — `img/*`
 
-替换 `img/bg.png` 为你自己的背景图即可
+替换 `img/bg.png` 为你自己的背景图
+替换 `img/favicon.ico` 为你自己的网站图标
 
 ### 4. 网站导航 — `index.html`
 
