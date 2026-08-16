@@ -29,7 +29,7 @@ const CONTACTS = {
         icon: 'fa-brands fa-x-twitter',
         title: 'Twitter / X',
         label: '账号',
-        value: '@lin_neko_',
+        value: '@amehareko',
         action: {
             text: '看看 →',
             url: 'https://x.com/amehareko'
