@@ -9,20 +9,20 @@ const CONTACTS = {
         icon: 'fa-brands fa-github',
         title: 'GitHub',
         label: '用户名',
-        value: '@Lin_neko',
+        value: '@Amehareko_雨晴子',
         action: {
             text: '查看Github页 →',
-            url: 'https://github.com/Lin-neko/'
+            url: 'https://github.com/amehareko/'
         }
     },
     email: {
         icon: 'fa-solid fa-envelope',
         title: 'Email',
         label: '电子邮箱',
-        value: '1844683904@qq.com',
+        value: 'amehare@stmp.amehareko.space',
         action: {
             text: '发送邮件 →',
-            url: 'mailto:1844683904@qq.com'
+            url: 'mailto:amehare@stmp.amehareko.space'
         }
     },
     twitter: {
@@ -32,7 +32,7 @@ const CONTACTS = {
         value: '@lin_neko_',
         action: {
             text: '看看 →',
-            url: 'https://x.com/lin_neko_'
+            url: 'https://x.com/amehareko'
         }
     },
     bilibili: {
